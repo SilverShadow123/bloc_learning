@@ -62,7 +62,7 @@ class Person extends Equatable{
   final String name;
   final int age;
 
-  Person({required this.name, required this.age});
+  const Person({required this.name, required this.age});
   // The props getter returns a list of the properties that should be used for comparison.
   @override
   List<Object?> get props => [name, age];
