@@ -1,6 +1,9 @@
 import 'package:bloc_learning/bloc/counter/counter_bloc.dart';
+import 'package:bloc_learning/bloc/image_picker/image_picker_bloc.dart';
 import 'package:bloc_learning/ui/counter_example/counter_screen.dart';
+import 'package:bloc_learning/ui/image_picker/image_picker_example.dart';
 import 'package:bloc_learning/ui/switch_example/switch_example_screen.dart';
+import 'package:bloc_learning/utils/image_picker_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,12 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => CounterBloc(),
-        ),
-        BlocProvider(
-          create: (context) => SwitchBloc(),
-        ),
+        BlocProvider(create: (context) => CounterBloc()),
+        BlocProvider(create: (context) => SwitchBloc()),
+        BlocProvider(create: (context) => ImagePickerBloc(ImagePickerUtils())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -30,10 +30,9 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SwitchExampleScreen(),
+        home: ImagePickerExample(),
         debugShowCheckedModeBanner: false,
       ),
     );
   }
 }
-
