@@ -11,7 +11,6 @@ class CounterState extends Equatable {
   // It takes an optional named parameter 'counter' with a default value of 0.
   // 'this.counter' assigns the passed 'counter' value to the instance's 'counter' field.
   const CounterState({this.counter = 0});
-
   // Define a method named 'copyWith'.
   // This method is a common pattern in immutable state management.
   // It creates a new 'CounterState' instance with potentially updated values.
