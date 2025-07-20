@@ -1,11 +1,13 @@
 import 'package:bloc_learning/bloc/counter/counter_bloc.dart';
 import 'package:bloc_learning/bloc/favourite_app/favourite_app_bloc.dart';
 import 'package:bloc_learning/bloc/image_picker/image_picker_bloc.dart';
+import 'package:bloc_learning/bloc/posts/posts_bloc.dart';
 import 'package:bloc_learning/bloc/todo/todo_bloc.dart';
 import 'package:bloc_learning/repository/favourite_repository.dart';
 import 'package:bloc_learning/ui/counter_example/counter_screen.dart';
 import 'package:bloc_learning/ui/favourite_app/favourite_app_screen.dart';
 import 'package:bloc_learning/ui/image_picker/image_picker_example.dart';
+import 'package:bloc_learning/ui/posts/posts_screen.dart';
 import 'package:bloc_learning/ui/switch_example/switch_example_screen.dart';
 import 'package:bloc_learning/ui/todo/todo_screen/to_do_screen.dart';
 import 'package:bloc_learning/utils/image_picker_utils.dart';
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ImagePickerBloc(ImagePickerUtils())),
         BlocProvider(create: (context)=> TodoBloc()),
         BlocProvider(create: (context)=> FavouriteBloc(FavouriteRepository())),
+        BlocProvider(create: (context)=>PostBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           useMaterial3: true,
         ),
-        home: const FavouriteAppScreen(),
+        home: const PostsScreen(),
         debugShowCheckedModeBanner: false,
       ),
     );
