@@ -6,27 +6,31 @@ import '../model/posts_model.dart';
 class PostStates extends Equatable {
   final PostStatus postStatus;
   final List<PostModel> postList;
+  final List<PostModel> tempostList;
   final String message;
 
   const PostStates({
     this.postStatus = PostStatus.loading,
-    this.postList = const [],
+    this.postList = const <PostModel>[],
+    this.tempostList = const <PostModel>[],
     this.message = '',
   });
 
   PostStates copyWith({
     PostStatus? postStatus,
     List<PostModel>? postList,
+    List<PostModel>? tempostList,
     String? message,
   }) {
     return PostStates(
       postStatus: postStatus ?? this.postStatus,
       postList: postList ?? this.postList,
+      tempostList: tempostList ?? this.tempostList,
       message: message ?? this.message,
     );
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props => [postStatus, postList, message];
+  List<Object?> get props => [postStatus, postList,tempostList, message];
 }
