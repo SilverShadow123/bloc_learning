@@ -15,6 +15,7 @@ class FavouriteBloc extends Bloc<FavouriteAppEvents, FavouriteItemStates> {
     on<FavouriteItem>(_addFavouriteItem);
     on<SelectFavouriteItem>(_selectFavouriteItem);
     on<UnSelectFavouriteItem>(_unSelectFavouriteItem);
+    on<DeleteFavouriteItem>(_deleteFavouriteItem);
   }
 
   void fetchList(
@@ -37,10 +38,23 @@ class FavouriteBloc extends Bloc<FavouriteAppEvents, FavouriteItemStates> {
     final index = favouriteList.indexWhere(
       (element) => element.id == event.item.id,
     );
+    if (event.item.isFavourite) {
+      if (temFavouriteList.contains(favouriteList[index])) {
+        temFavouriteList.remove(favouriteList[index]);
+        temFavouriteList.add(event.item);
+      }
+    } else {
+      if (temFavouriteList.contains(favouriteList[index])) {
+        temFavouriteList.remove(favouriteList[index]);
+        temFavouriteList.add(event.item);
+      }
+    }
+
     favouriteList[index] = event.item;
     emit(
       state.copyWith(
         favouriteItemList: List.from(favouriteList),
+        temFavouriteItemList: List.from(temFavouriteList),
         listStatus: ListStatus.success,
       ),
     );
@@ -70,6 +84,22 @@ class FavouriteBloc extends Bloc<FavouriteAppEvents, FavouriteItemStates> {
         favouriteItemList: List.from(favouriteList),
         temFavouriteItemList: List.from(temFavouriteList),
         listStatus: ListStatus.success,
+      ),
+    );
+  }
+
+  void _deleteFavouriteItem(
+    DeleteFavouriteItem event,
+    Emitter<FavouriteItemStates> emit,
+  ) async {
+    for (int i = 0; i < favouriteList.length; i++) {
+      favouriteList.remove(temFavouriteList[i]);
+    }
+    temFavouriteList.clear();
+    emit(
+      state.copyWith(
+        favouriteItemList: List.from(favouriteList),
+        temFavouriteItemList: List.from(temFavouriteList),
       ),
     );
   }
