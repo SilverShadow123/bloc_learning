@@ -50,7 +50,7 @@ class _PostsScreenState extends State<PostsScreen> {
                       },
                     ),
                     Expanded(
-                      child: ListView.builder(
+                      child: state.searchMessage.isNotEmpty? Center(child: Text(state.searchMessage.toString()),): ListView.builder(
                         itemCount:
                             state.tempostList.isEmpty
                                 ? state.postList.length

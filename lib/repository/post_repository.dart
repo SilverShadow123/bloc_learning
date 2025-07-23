@@ -5,10 +5,14 @@ import 'package:bloc_learning/bloc/model/posts_model.dart';
 import 'package:http/http.dart' as http;
 
 class PostRepository {
-  Future<List<PostModel>> fetchPosts()async {
+  Future<List<PostModel>> fetchPosts() async {
     try {
       final response = await http.get(
         Uri.parse('https://jsonplaceholder.typicode.com/comments'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
       );
       if (response.statusCode == 200) {
         final body = jsonDecode(response.body) as List;

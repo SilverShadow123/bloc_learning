@@ -37,12 +37,16 @@ class PostBloc extends Bloc<PostsEvent, PostStates> {
   }
 
   void _searchItem(SearchItem event, Emitter<PostStates> emit) {
-    temPostList =
-        state.postList
-            .where(
-              (element) => element.id.toString() == event.searchText.toString(),
-            )
-            .toList();
-    emit(state.copyWith(tempostList: temPostList));
+    if (event.searchText.isEmpty){
+      emit(state.copyWith(tempostList: [], searchMessage: ''));
+    }else{
+      temPostList =state.postList.where((element) => element.email.toString().toLowerCase().contains(event.searchText.toLowerCase())).toList();
+      if(temPostList.isEmpty){
+        emit(state.copyWith(tempostList: temPostList, searchMessage: 'No posts found with this id'));
+      }
+      else{
+        emit(state.copyWith(tempostList: temPostList, searchMessage: ''));
+      }
+    }
   }
 }
