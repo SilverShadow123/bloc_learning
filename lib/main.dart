@@ -7,6 +7,7 @@ import 'package:bloc_learning/repository/favourite_repository.dart';
 import 'package:bloc_learning/ui/counter_example/counter_screen.dart';
 import 'package:bloc_learning/ui/favourite_app/favourite_app_screen.dart';
 import 'package:bloc_learning/ui/image_picker/image_picker_example.dart';
+import 'package:bloc_learning/ui/login/login_screen.dart';
 import 'package:bloc_learning/ui/posts/posts_screen.dart';
 import 'package:bloc_learning/ui/switch_example/switch_example_screen.dart';
 import 'package:bloc_learning/ui/todo/todo_screen/to_do_screen.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           useMaterial3: true,
         ),
-        home:  CounterScreen(),
+        home:  LoginScreen(),
         debugShowCheckedModeBanner: false,
       ),
     );
