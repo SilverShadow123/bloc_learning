@@ -3,6 +3,7 @@ import 'package:bloc_learning/bloc/favourite_app/favourite_app_bloc.dart';
 import 'package:bloc_learning/bloc/image_picker/image_picker_bloc.dart';
 import 'package:bloc_learning/bloc/posts/posts_bloc.dart';
 import 'package:bloc_learning/bloc/todo/todo_bloc.dart';
+import 'package:bloc_learning/freezed.dart';
 import 'package:bloc_learning/repository/favourite_repository.dart';
 import 'package:bloc_learning/ui/counter_example/counter_screen.dart';
 import 'package:bloc_learning/ui/favourite_app/favourite_app_screen.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           useMaterial3: true,
         ),
-        home:  LoginScreen(),
+        home:  Freezed(),
         debugShowCheckedModeBanner: false,
       ),
     );
