@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:bloc_learning/clean_code/config/data/exceptions/app_exceptions.dart';
-import 'package:bloc_learning/clean_code/config/data/network/base_api_services.dart';
 import 'package:http/http.dart' as http;
+
+import '../exceptions/app_exceptions.dart';
+import 'base_api_services.dart';
 
 class NetworkServicesApi implements BaseApiServices{
   @override

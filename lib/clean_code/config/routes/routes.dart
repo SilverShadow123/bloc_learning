@@ -11,8 +11,8 @@ class Routes {
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case RoutesName.homeScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
-      case RoutesName.splashScreen:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
+      case RoutesName.loginScreen:
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
