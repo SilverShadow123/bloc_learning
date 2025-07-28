@@ -3,6 +3,7 @@ import 'package:bloc_learning/clean_code/config/components/loading_widget.dart';
 import 'package:bloc_learning/clean_code/config/components/round_button.dart';
 import 'package:flutter/material.dart';
 
+import '../../config/data/exceptions/app_exceptions.dart';
 import '../../config/routes/routes_name.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,6 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        throw NoInternetException();
+      }),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
