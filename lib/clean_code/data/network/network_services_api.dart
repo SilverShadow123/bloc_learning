@@ -16,11 +16,8 @@ class NetworkServicesApi implements BaseApiServices{
      
      final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
      jsonResponse = returnResponse(response);
-
-
-     if(response.statusCode == 200){
-
-     }
+     // No need for an additional check for statusCode 200 here,
+     // as returnResponse already handles different status codes.
    }on SocketException{
      throw NoInternetException('');
    }on TimeoutException{
@@ -38,10 +35,6 @@ class NetworkServicesApi implements BaseApiServices{
       final response = await http.post(Uri.parse(url), body: data).timeout(const Duration(seconds: 10));
       jsonResponse = returnResponse(response);
 
-
-      if(response.statusCode == 200){
-
-      }
     }on SocketException{
       throw NoInternetException('');
     }on TimeoutException{
@@ -52,19 +45,19 @@ class NetworkServicesApi implements BaseApiServices{
 
 
   dynamic returnResponse(http.Response response){
-    switch (response){
+    switch (response.statusCode){
       case 200:
         dynamic jsonResponse = jsonDecode(response.body);
         return jsonResponse;
       case 400:
         dynamic jsonResponse = jsonDecode(response.body);
-        return jsonResponse;
+        throw BadRequestException(jsonResponse['message'] ?? 'Bad request');
       case 401:
         throw UnauthorizedException('Unauthorized request');
       case 500:
-       throw FetchDataException('Error occurred while communicating with server'+response.statusCode.toString());
+       throw FetchDataException('Error occurred while communicating with server: ${response.statusCode}');
        default:
-         throw UnauthorizedException();
+         throw FetchDataException('Error occurred: ${response.statusCode}');
     }
   }
   

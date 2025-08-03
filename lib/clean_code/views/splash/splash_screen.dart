@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Icon(
-                Icons.flutter_dash, // Example icon, replace with your desired icon
+                Icons.flutter_dash_rounded, // Example icon, replace with your desired icon
                 size: 100, // Adjust size as needed
               ),
               const SizedBox(height: 20,),
