@@ -1,3 +1,4 @@
+import 'package:bloc_learning/clean_code/utils/validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,13 +12,14 @@ class EmailInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
+      buildWhen: (current, previous)=>current.email != previous.email,
       builder: (context, state) {
         return TextFormField(
           focusNode: emailFocusNode,
           keyboardType: TextInputType.emailAddress,
           onChanged: (value){
             print('Dispatching EmailChanged with $value');
-            context.read<LoginBloc>().add(EmailChanged(value));
+            context.read<LoginBloc>().add(EmailChanged(email: value));
           },
           decoration: InputDecoration(
             labelText: 'Email',
@@ -28,9 +30,7 @@ class EmailInputWidget extends StatelessWidget {
           validator: (value) {
             if (value!.isEmpty) {
               return 'Please enter your email';
-            } else if (!RegExp(
-                r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-                .hasMatch(value)) {
+            } if (!Validations.emailValidator(value)){
               return 'Please enter a valid email address';
             }
             return null; // Add this line
