@@ -1,4 +1,5 @@
 import 'package:bloc_learning/clean_code/utils/enum.dart';
+import 'package:bloc_learning/clean_code/utils/flush_bar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,24 +16,17 @@ class LoginButton extends StatelessWidget {
       listenWhen: (previous, current) =>
           previous.postApiStatus != current.postApiStatus,
       listener: (context, state) {
-        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        String message;
-        switch (state.postApiStatus) {
-          case PostApiStatus.loading:
-            message = 'Submitting...';
-            break;
-          case PostApiStatus.error:
-          case PostApiStatus.success:
-            message = state.message.toString();
-            break;
-          default:
-            return; // Do nothing if the status is initial or unknown
+        if (state.postApiStatus == PostApiStatus.error) {
+          FlushBarHelper.flashBarErrorMessage(
+              state.message.toString(), context);
         }
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(message)));
+        if (state.postApiStatus == PostApiStatus.success) {
+          FlushBarHelper.flashBarSuccessMessage('Login Successful', context);
+        }
       },
       child: BlocBuilder<LoginBloc, LoginState>(
-        buildWhen: (current, previous) => false,
+        buildWhen: (previous, current) =>
+            previous.postApiStatus != current.postApiStatus,
         builder: (context, state) {
           return ElevatedButton(
             onPressed: () {
@@ -55,7 +49,11 @@ class LoginButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
-            child: const Text('Login'),
+            child: state.postApiStatus == PostApiStatus.loading
+                ? CircularProgressIndicator(
+                    color: Colors.white,
+                  )
+                : const Text('Login'),
           );
         },
       ),

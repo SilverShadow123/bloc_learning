@@ -50,13 +50,16 @@
 // }
 
 import 'package:bloc_learning/clean_code/config/routes/routes_name.dart';
+import 'package:bloc_learning/clean_code/repository/auth/login_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 
 import 'clean_code/config/routes/routes.dart';
 import 'clean_code/views/splash/splash_screen.dart';
-
+GetIt getIt = GetIt.instance;
 void main() {
+  servicesLocator();
   runApp(const MyApp());
 }
 
@@ -78,4 +81,8 @@ initialRoute: RoutesName.splashScreen,
   }
 }
 
+void servicesLocator() {
+  getIt.registerLazySingleton<LoginRepository>(() => SplashServices());
+  // Register other services here as needed
+}
 

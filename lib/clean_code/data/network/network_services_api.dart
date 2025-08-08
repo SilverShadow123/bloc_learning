@@ -19,7 +19,7 @@ class NetworkServicesApi implements BaseApiServices {
       jsonResponse = returnResponse(response);
 
     } on SocketException {
-      throw NoInternetException('');
+      throw NoInternetException('No Internet connection');
     } on TimeoutException {
       throw TimeoutException('Request timeout');
     }
