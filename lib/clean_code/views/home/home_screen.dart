@@ -12,13 +12,13 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
         actions: [
-          IconButton(onPressed: (){
+          IconButton(onPressed: () async {
             LocalStorage localStorage = LocalStorage();
-            localStorage.clearValue('token').then((value){
-              localStorage.clearValue('isLoggedIn').then((value){
-            Navigator.pushNamedAndRemoveUntil(context, RoutesName.loginScreen, (route) => false);
-              });
-            });
+            await localStorage.clearValue('token');
+            await localStorage.clearValue('isLoggedIn');
+            if (context.mounted) {
+              Navigator.pushNamedAndRemoveUntil(context, RoutesName.loginScreen, (route) => false);
+            }
           }, icon: Icon(Icons.logout_outlined,color: Colors.red,))
         ],
       ),
