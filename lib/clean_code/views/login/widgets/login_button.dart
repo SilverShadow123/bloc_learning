@@ -1,3 +1,4 @@
+import 'package:bloc_learning/clean_code/config/routes/routes_name.dart';
 import 'package:bloc_learning/clean_code/utils/enum.dart';
 import 'package:bloc_learning/clean_code/utils/flush_bar_helper.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class LoginButton extends StatelessWidget {
               state.message.toString(), context);
         }
         if (state.postApiStatus == PostApiStatus.success) {
+          Navigator.pushNamed(context, RoutesName.homeScreen);
           FlushBarHelper.flashBarSuccessMessage('Login Successful', context);
         }
       },
