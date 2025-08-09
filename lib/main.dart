@@ -82,7 +82,7 @@ initialRoute: RoutesName.splashScreen,
 }
 
 void servicesLocator() {
-  getIt.registerLazySingleton<LoginRepository>(() => SplashServices());
+  getIt.registerLazySingleton<LoginRepository>(() => LoginRepository());
   // Register other services here as needed
 }
 
