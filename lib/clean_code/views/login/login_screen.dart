@@ -1,6 +1,5 @@
 
 import 'package:bloc_learning/clean_code/models/user/user_model.dart';
-import 'package:bloc_learning/clean_code/repository/auth/login_repository.dart';
 import 'package:bloc_learning/clean_code/views/login/widgets/widget.dart';
 import 'package:bloc_learning/main.dart';
 import 'package:flutter/material.dart';

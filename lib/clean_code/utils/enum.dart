@@ -4,3 +4,9 @@ enum PostApiStatus {
   success,
   error,
 }
+
+enum Status {
+  loading,
+  completed,
+  error,
+}
