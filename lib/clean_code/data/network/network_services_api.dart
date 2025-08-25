@@ -8,16 +8,16 @@ import '../exceptions/app_exceptions.dart';
 import 'base_api_services.dart';
 
 class NetworkServicesApi implements BaseApiServices {
+
   @override
   Future<dynamic> getApi(String url) async {
     dynamic jsonResponse;
-
-    print(jsonResponse.statusCode);
     try {
-
       final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
+      if (kDebugMode) {
+        print(response.statusCode);
+      }
       jsonResponse = returnResponse(response);
-
     } on SocketException {
       throw NoInternetException('No Internet connection');
     } on TimeoutException {

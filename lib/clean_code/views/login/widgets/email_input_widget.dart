@@ -2,7 +2,10 @@ import 'package:bloc_learning/clean_code/utils/validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/login_bloc.dart';
+import '../../../bloc/login/login_bloc.dart';
+import '../../../bloc/login/login_event.dart';
+import '../../../bloc/login/login_state.dart';
+
 
 class EmailInputWidget extends StatelessWidget {
   const EmailInputWidget({super.key, required this.emailFocusNode});

@@ -1,4 +1,8 @@
-part of 'login_bloc.dart';
+
+
+import 'package:equatable/equatable.dart';
+
+import '../../utils/enum.dart';
 
 class LoginState extends Equatable {
   final String email;

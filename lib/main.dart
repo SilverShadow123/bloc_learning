@@ -51,6 +51,8 @@
 
 import 'package:bloc_learning/clean_code/config/routes/routes_name.dart';
 import 'package:bloc_learning/clean_code/repository/auth/login_repository.dart';
+import 'package:bloc_learning/clean_code/repository/movies/movies_http_api_repository.dart';
+import 'package:bloc_learning/clean_code/repository/movies/movies_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -83,6 +85,6 @@ initialRoute: RoutesName.splashScreen,
 
 void servicesLocator() {
   getIt.registerLazySingleton<LoginRepository>(() => LoginRepository());
-  // Register other services here as needed
+  getIt.registerLazySingleton<MoviesRepository>(()=> MoviesHttpApiRepository());
 }
 

@@ -2,10 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_learning/clean_code/repository/auth/login_repository.dart';
 import 'package:bloc_learning/clean_code/services/session_manager/session_controller.dart';
 import 'package:bloc_learning/clean_code/utils/enum.dart';
-import 'package:equatable/equatable.dart';
 
-part 'login_event.dart';
-part 'login_state.dart';
+
+import 'login_event.dart';
+import 'login_state.dart';
+
+
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
